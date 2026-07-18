@@ -150,12 +150,16 @@ function renderSite(data) {
   <script>
     (() => {
       try {
-        const theme = localStorage.getItem("theme");
-        if (theme === "light" || theme === "dark") {
-          document.documentElement.dataset.theme = theme;
-        }
+        const preference = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        let resolved = "light";
+        if (preference === "dark") resolved = "dark";
+        else if (preference === "light") resolved = "light";
+        else resolved = prefersDark ? "dark" : "light";
+        document.documentElement.dataset.theme = resolved;
+        document.documentElement.style.colorScheme = resolved;
       } catch {
-        // Use the system color scheme when storage is unavailable.
+        document.documentElement.dataset.theme = "light";
       }
     })();
   </script>

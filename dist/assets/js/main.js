@@ -11,55 +11,68 @@ document.addEventListener("DOMContentLoaded", () => {
   const themes = ["system", "light", "dark"];
   const icons = { system: "◐", light: "☀", dark: "☾" };
 
-  const getSavedTheme = () => {
+  const getSavedPreference = () => {
     try {
       const saved = localStorage.getItem("theme");
-      return saved === "light" || saved === "dark" ? saved : "system";
+      if (saved === "light" || saved === "dark" || saved === "system") {
+        return saved;
+      }
     } catch {
-      return "system";
+      // Fall through to system preference.
     }
+    return "system";
   };
 
-  const applyTheme = (theme) => {
-    if (theme === "system") {
-      delete document.documentElement.dataset.theme;
-      try {
-        localStorage.removeItem("theme");
-      } catch {
-        // The system preference still works when storage is unavailable.
-      }
-    } else {
-      document.documentElement.dataset.theme = theme;
-      try {
-        localStorage.setItem("theme", theme);
-      } catch {
-        // The selected theme still applies for the current page.
-      }
+  const resolveTheme = (preference) => {
+    if (preference === "light" || preference === "dark") return preference;
+    return systemTheme.matches ? "dark" : "light";
+  };
+
+  const applyTheme = (preference) => {
+    const resolved = resolveTheme(preference);
+    document.documentElement.dataset.theme = resolved;
+    document.documentElement.style.colorScheme = resolved;
+
+    try {
+      localStorage.setItem("theme", preference);
+    } catch {
+      // The selected theme still applies for the current page.
     }
 
-    const effectiveTheme =
-      theme === "system" ? (systemTheme.matches ? "dark" : "light") : theme;
-    const label = theme[0].toUpperCase() + theme.slice(1);
-    if (themeLabel) themeLabel.textContent = label;
-    if (themeIcon) themeIcon.textContent = icons[theme];
+    const preferenceLabel =
+      preference === "system"
+        ? `System · ${resolved === "dark" ? "Dark" : "Light"}`
+        : preference[0].toUpperCase() + preference.slice(1);
+
+    if (themeLabel) themeLabel.textContent = preferenceLabel;
+    if (themeIcon) themeIcon.textContent = icons[preference];
     if (themeToggle) {
-      themeToggle.setAttribute("aria-label", `Theme: ${label}`);
-      themeToggle.title = `Theme: ${label} (${effectiveTheme})`;
+      themeToggle.setAttribute("aria-label", `Theme: ${preferenceLabel}`);
+      themeToggle.title =
+        preference === "system"
+          ? `Following your device setting (currently ${resolved}). Click for Light.`
+          : `Theme: ${preferenceLabel}. Click to change.`;
     }
   };
 
-  let activeTheme = getSavedTheme();
-  applyTheme(activeTheme);
+  let activePreference = getSavedPreference();
+  applyTheme(activePreference);
 
   themeToggle?.addEventListener("click", () => {
-    const nextIndex = (themes.indexOf(activeTheme) + 1) % themes.length;
-    activeTheme = themes[nextIndex];
-    applyTheme(activeTheme);
+    const nextIndex = (themes.indexOf(activePreference) + 1) % themes.length;
+    activePreference = themes[nextIndex];
+    applyTheme(activePreference);
   });
 
-  systemTheme.addEventListener("change", () => {
-    if (activeTheme === "system") applyTheme("system");
-  });
+  const syncSystemTheme = () => {
+    if (activePreference === "system") applyTheme("system");
+  };
+
+  if (typeof systemTheme.addEventListener === "function") {
+    systemTheme.addEventListener("change", syncSystemTheme);
+  } else if (typeof systemTheme.addListener === "function") {
+    systemTheme.addListener(syncSystemTheme);
+  }
 
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",

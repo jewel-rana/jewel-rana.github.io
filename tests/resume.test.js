@@ -131,6 +131,7 @@ test("portfolio supports system, light, and dark themes", () => {
   assert.match(css, /\[data-theme="light"\]/);
   assert.match(css, /\[data-theme="dark"\]/);
   assert.match(js, /\["system", "light", "dark"\]/);
+  assert.match(js, /resolveTheme|System ·/);
 });
 
 test("tooling includes macOS and GitHub Actions CI/CD", () => {
