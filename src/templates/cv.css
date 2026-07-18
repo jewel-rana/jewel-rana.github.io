@@ -1,0 +1,202 @@
+:root {
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: #e2e8f0;
+  --accent: #0f766e;
+  --bg: #ffffff;
+  --soft: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.45;
+}
+
+.cv-page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 36px 40px 48px;
+}
+
+.cv-header {
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 16px;
+  margin-bottom: 22px;
+}
+
+.cv-header h1 {
+  margin: 0 0 4px;
+  font-size: 26pt;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.cv-role {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 13pt;
+  font-weight: 600;
+}
+
+.cv-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  color: var(--muted);
+  font-size: 10pt;
+}
+
+.cv-contact a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cv-contact a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+section {
+  margin-bottom: 18px;
+}
+
+h2 {
+  margin: 0 0 8px;
+  font-size: 12pt;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+}
+
+.summary p,
+.highlights li,
+.job p,
+.project p,
+.education-item p {
+  margin: 0 0 6px;
+}
+
+.summary p:last-child,
+.job p:last-child,
+.project p:last-child {
+  margin-bottom: 0;
+}
+
+.highlights {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.highlights li {
+  margin-bottom: 4px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 6px 12px;
+}
+
+.skills-grid dt {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.skills-grid dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.job,
+.project,
+.education-item {
+  margin-bottom: 14px;
+  page-break-inside: avoid;
+}
+
+.job-header,
+.project-header,
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.job-header h3,
+.project-header h3,
+.edu-header h3 {
+  margin: 0;
+  font-size: 11.5pt;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 9.5pt;
+  white-space: nowrap;
+}
+
+.company,
+.project-role {
+  margin: 2px 0 6px;
+  color: var(--muted);
+  font-size: 10pt;
+}
+
+.tech {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 9.5pt;
+}
+
+.tech strong {
+  color: var(--ink);
+}
+
+.project-links {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 9.5pt;
+}
+
+.project-links a {
+  color: var(--accent);
+}
+
+.courses {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.courses li {
+  margin-bottom: 3px;
+}
+
+@media print {
+  .cv-page {
+    max-width: none;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .cv-contact a::after {
+    content: "";
+  }
+}

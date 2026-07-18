@@ -1,0 +1,87 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { existsSync, readFileSync, statSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { resume } from "../src/data/resume.js";
+import { renderMarkdown } from "../src/renderers/markdown.js";
+import { renderHtml } from "../src/renderers/html.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(__dirname, "..");
+const distCv = path.join(root, "dist", "cv");
+
+const DEAD_LINK_PATTERNS = [
+  /bit\.ly/i,
+  /app\.jolzatra\.com/i,
+  /merchant\.jolzatra\.com/i,
+  /rajtika\.com/i,
+];
+
+test("resume has required remote-focused fields", () => {
+  assert.equal(resume.basics.name, "Md Jewel Rana");
+  assert.match(resume.basics.label, /Backend/i);
+  assert.ok(resume.basics.summary.join(" ").includes("10+"));
+  assert.ok(resume.experience.some((job) => job.company.includes("Newroz")));
+  assert.ok(resume.projects.some((project) => /Kartat/i.test(project.name)));
+  assert.ok(resume.projects.some((project) => /FastPay/i.test(project.name)));
+  assert.ok(resume.profiles.some((profile) => profile.network === "GitHub"));
+});
+
+test("markdown and html renderers include core sections", () => {
+  const markdown = renderMarkdown(resume);
+  const html = renderHtml(resume, { inlineCss: true });
+
+  for (const content of [markdown, html]) {
+    assert.match(content, /Professional Summary/i);
+    assert.match(content, /Technical Skills|Capabilities/i);
+    assert.match(content, /Professional Experience/i);
+    assert.match(content, /Kartat/i);
+    assert.match(content, /FastPay/i);
+    assert.match(content, /Newroz Technologies/i);
+  }
+
+  assert.doesNotMatch(markdown, /REFERENCES/i);
+  assert.doesNotMatch(html, /Barontek|Cantonment/i);
+});
+
+test("generated artifacts exist after build", () => {
+  const required = [
+    "Jewel-Rana-CV.md",
+    "Jewel-Rana-CV.html",
+    "Jewel-Rana-CV.pdf",
+    "Jewel-Rana-CV.docx",
+  ];
+
+  for (const file of required) {
+    const fullPath = path.join(distCv, file);
+    assert.ok(existsSync(fullPath), `missing ${file}`);
+    assert.ok(statSync(fullPath).size > 500, `${file} looks empty`);
+  }
+
+  assert.ok(existsSync(path.join(root, "dist", "index.html")));
+  assert.ok(existsSync(path.join(root, "dist", "assets", "css", "styles.css")));
+});
+
+test("site and cv avoid known dead project demo links", () => {
+  const filesToScan = [
+    path.join(root, "dist", "index.html"),
+    path.join(distCv, "Jewel-Rana-CV.md"),
+    path.join(distCv, "Jewel-Rana-CV.html"),
+    path.join(root, "src", "data", "resume.js"),
+  ];
+
+  for (const file of filesToScan) {
+    const content = readFileSync(file, "utf8");
+    for (const pattern of DEAD_LINK_PATTERNS) {
+      assert.doesNotMatch(content, pattern, `${file} contains ${pattern}`);
+    }
+  }
+});
+
+test("experience timeline keeps Newroz as present role", () => {
+  const current = resume.experience[0];
+  assert.equal(current.company, "Newroz Technologies Limited");
+  assert.equal(current.endDate, "Present");
+  assert.match(current.highlights.join(" "), /Kartat|FastPay/i);
+});
