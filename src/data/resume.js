@@ -457,6 +457,16 @@ export const resume = {
 
   downloads: [
     {
+      label: "European CV — 2-page PDF",
+      href: "cv/Jewel-Rana-CV-Europe-2-Page.pdf",
+      type: "pdf",
+    },
+    {
+      label: "European CV — DOCX",
+      href: "cv/Jewel-Rana-CV-Europe-2-Page.docx",
+      type: "docx",
+    },
+    {
       label: "Download PDF",
       href: "cv/Jewel-Rana-CV.pdf",
       type: "pdf",

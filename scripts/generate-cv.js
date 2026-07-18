@@ -6,6 +6,11 @@ import { resume } from "../src/data/resume.js";
 import { renderMarkdown } from "../src/renderers/markdown.js";
 import { renderHtml } from "../src/renderers/html.js";
 import { renderDocx } from "../src/renderers/docx.js";
+import {
+  renderEuropeDocx,
+  renderEuropeHtml,
+  renderEuropeMarkdown,
+} from "../src/renderers/europe.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -17,10 +22,14 @@ const files = {
   html: path.join(outDir, "Jewel-Rana-CV.html"),
   pdf: path.join(outDir, "Jewel-Rana-CV.pdf"),
   docx: path.join(outDir, "Jewel-Rana-CV.docx"),
+  europeMd: path.join(outDir, "Jewel-Rana-CV-Europe-2-Page.md"),
+  europeHtml: path.join(outDir, "Jewel-Rana-CV-Europe-2-Page.html"),
+  europePdf: path.join(outDir, "Jewel-Rana-CV-Europe-2-Page.pdf"),
+  europeDocx: path.join(outDir, "Jewel-Rana-CV-Europe-2-Page.docx"),
   css: path.join(assetsCssDir, "cv.css"),
 };
 
-async function generatePdf(htmlPath, pdfPath) {
+async function generatePdf(htmlPath, pdfPath, options = {}) {
   const browser = await puppeteer.launch({
     headless: true,
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
@@ -36,10 +45,10 @@ async function generatePdf(htmlPath, pdfPath) {
       format: "A4",
       printBackground: true,
       margin: {
-        top: "14mm",
-        right: "12mm",
-        bottom: "14mm",
-        left: "12mm",
+        top: options.margin ?? "14mm",
+        right: options.margin ?? "12mm",
+        bottom: options.margin ?? "14mm",
+        left: options.margin ?? "12mm",
       },
     });
   } finally {
@@ -54,10 +63,16 @@ async function main() {
   const markdown = renderMarkdown(resume);
   const html = renderHtml(resume, { inlineCss: true });
   const docxBuffer = await renderDocx(resume);
+  const europeMarkdown = renderEuropeMarkdown(resume);
+  const europeHtml = renderEuropeHtml(resume);
+  const europeDocxBuffer = await renderEuropeDocx(resume);
 
   await writeFile(files.md, markdown, "utf8");
   await writeFile(files.html, html, "utf8");
   await writeFile(files.docx, docxBuffer);
+  await writeFile(files.europeMd, europeMarkdown, "utf8");
+  await writeFile(files.europeHtml, europeHtml, "utf8");
+  await writeFile(files.europeDocx, europeDocxBuffer);
   await copyFile(
     path.join(root, "src", "templates", "cv.css"),
     files.css,
@@ -75,6 +90,7 @@ async function main() {
   );
 
   await generatePdf(files.html, files.pdf);
+  await generatePdf(files.europeHtml, files.europePdf, { margin: "0" });
 
   // Keep a root-level Markdown CV for convenience / ATS sharing
   await writeFile(path.join(root, "Jewel-Rana-CV.md"), markdown, "utf8");

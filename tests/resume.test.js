@@ -61,6 +61,10 @@ test("generated artifacts exist after build", () => {
     "Jewel-Rana-CV.html",
     "Jewel-Rana-CV.pdf",
     "Jewel-Rana-CV.docx",
+    "Jewel-Rana-CV-Europe-2-Page.md",
+    "Jewel-Rana-CV-Europe-2-Page.html",
+    "Jewel-Rana-CV-Europe-2-Page.pdf",
+    "Jewel-Rana-CV-Europe-2-Page.docx",
   ];
 
   for (const file of required) {
@@ -150,4 +154,18 @@ test("fintech case studies demonstrate production-pressure handling", () => {
   for (const project of productionProjects) {
     assert.match(project.highlights.join(" "), /production|pressure|incident/i);
   }
+});
+
+test("European CV is concise, private, and structured as two pages", () => {
+  const europeHtml = readFileSync(
+    path.join(distCv, "Jewel-Rana-CV-Europe-2-Page.html"),
+    "utf8",
+  );
+  const pageMarkers = europeHtml.match(/data-eu-page="/g) || [];
+
+  assert.equal(pageMarkers.length, 2);
+  assert.match(europeHtml, /Durpalla Booking Platform Ecosystem/);
+  assert.match(europeHtml, /FastPay Wallet/);
+  assert.match(europeHtml, /Kartat Card-Selling Platform/);
+  assert.doesNotMatch(europeHtml, /profile-photo|<img|date of birth/i);
 });
