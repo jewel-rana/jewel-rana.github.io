@@ -100,14 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
     style.textContent = `
       [data-reveal].reveal-pending {
         opacity: 0;
-        transform: translateY(10px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
+        transform: translateY(12px);
+        transition: opacity 0.45s ease, transform 0.45s ease;
       }
       [data-reveal].is-visible {
         opacity: 1 !important;
         transform: none !important;
       }
-      .sidebar[data-reveal].reveal-pending {
+      .hero-grid > [data-reveal].reveal-pending {
         transform: none;
       }
     `;

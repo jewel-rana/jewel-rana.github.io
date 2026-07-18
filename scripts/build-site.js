@@ -19,14 +19,14 @@ function renderSkills(skills) {
   return skills
     .map(
       (group) => `
-      <article class="card" data-reveal>
+      <div class="skill-group">
         <h3>${escapeHtml(group.category)}</h3>
         <ul class="chip-list">
           ${group.items
             .map((item) => `<li class="chip">${escapeHtml(item)}</li>`)
             .join("")}
         </ul>
-      </article>
+      </div>
     `,
     )
     .join("");
@@ -36,13 +36,12 @@ function renderExperience(experience) {
   return experience
     .map(
       (job) => `
-      <article class="card timeline-item" data-reveal>
-        <h3>${escapeHtml(job.position)}</h3>
-        <div class="job-meta">
-          <span class="tag">${escapeHtml(job.company)}</span>
-          <span>${escapeHtml(job.location)}</span>
-          <span>${escapeHtml(job.startDate)} – ${escapeHtml(job.endDate)}</span>
+      <article class="entry">
+        <div class="entry-head">
+          <h3>${escapeHtml(job.position)}</h3>
+          <span class="entry-date">${escapeHtml(job.startDate)} – ${escapeHtml(job.endDate)}</span>
         </div>
+        <p class="entry-meta">${escapeHtml(job.company)} · ${escapeHtml(job.location)}</p>
         <p>${escapeHtml(job.summary)}</p>
         <ul>
           ${job.highlights.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
@@ -57,24 +56,24 @@ function renderProjects(projects) {
   return projects
     .map(
       (project) => `
-      <article class="card" data-reveal>
-        <h3>${escapeHtml(project.name)}</h3>
-        <div class="project-meta">
-          <span class="tag">${escapeHtml(project.role)}</span>
-          <span>${escapeHtml(project.status)}</span>
+      <article class="entry">
+        <div class="entry-head">
+          <h3>${escapeHtml(project.name)}</h3>
+          <span class="entry-date">${escapeHtml(project.status)}</span>
         </div>
+        <p class="entry-meta">${escapeHtml(project.role)}</p>
         <p>${escapeHtml(project.description)}</p>
         <ul>
           ${project.highlights.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
         </ul>
-        <ul class="chip-list" style="margin-top:1rem">
+        <ul class="chip-list">
           ${project.technologies
             .map((item) => `<li class="chip">${escapeHtml(item)}</li>`)
             .join("")}
         </ul>
         ${
           project.links?.length
-            ? `<p style="margin-top:1rem">${project.links
+            ? `<p class="entry-links">${project.links
                 .map(
                   (link) =>
                     `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`,
@@ -89,43 +88,46 @@ function renderProjects(projects) {
 }
 
 function renderOpenSource(repos) {
-  return repos
-    .map(
-      (repo) => `
-      <article class="card" data-reveal>
-        <h3><a href="${escapeHtml(repo.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(repo.name)}</a></h3>
-        <div class="project-meta"><span class="tag">${escapeHtml(repo.language)}</span></div>
-        <p>${escapeHtml(repo.description)}</p>
-      </article>
-    `,
-    )
-    .join("");
+  return `
+    <ul class="repo-list">
+      ${repos
+        .map(
+          (repo) => `
+        <li>
+          <a href="${escapeHtml(repo.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(repo.name)}</a>
+          <span class="repo-lang">${escapeHtml(repo.language)}</span>
+          <p>${escapeHtml(repo.description)}</p>
+        </li>
+      `,
+        )
+        .join("")}
+    </ul>
+  `;
 }
 
 function renderDownloads(downloads) {
   return downloads
     .map(
       (item) =>
-        `<a class="button button-secondary" href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)}</a>`,
+        `<a class="button ${item.type === "pdf" && item.label.includes("European") ? "button-primary" : "button-secondary"}" href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)}</a>`,
     )
     .join("");
 }
 
-function renderProfiles(profiles) {
+function renderProfileIcons(profiles) {
   return profiles
     .map(
       (profile) => `
-      <li>
-        <strong>${escapeHtml(profile.network)}</strong>
-        <a href="${escapeHtml(profile.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(profile.username)}</a>
-      </li>
+      <a class="social-link" href="${escapeHtml(profile.url)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(profile.network)}">${escapeHtml(profile.network)}</a>
     `,
     )
     .join("");
 }
 
 function renderSite(data) {
-  const summary = data.basics.summary.map((p) => `<p>${escapeHtml(p)}</p>`).join("");
+  const summary = data.basics.summary
+    .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+    .join("");
   const highlights = data.highlights
     .map((item) => `<li>${escapeHtml(item)}</li>`)
     .join("");
@@ -166,141 +168,104 @@ function renderSite(data) {
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#top">${escapeHtml(data.basics.name)}</a>
-      <nav aria-label="Primary">
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#open-source">Open Source</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="cv/Jewel-Rana-CV-Europe-2-Page.pdf" target="_blank" rel="noopener noreferrer">EU CV</a></li>
-          <li><a href="cv/Jewel-Rana-CV.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
-        </ul>
-      </nav>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system" title="Theme: system">
-        <span aria-hidden="true" data-theme-icon>◐</span>
-        <span class="theme-label" data-theme-label>System</span>
-      </button>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="panel" data-reveal>
-          <p class="eyebrow">Remote-ready Laravel engineer</p>
-          <h1>${escapeHtml(data.basics.name)}</h1>
-          <p class="role">${escapeHtml(data.basics.label)}</p>
-          <p class="lede">${escapeHtml(data.basics.summary[0])}</p>
-          <div class="actions">
-            <a class="button button-primary" href="cv/Jewel-Rana-CV-Europe-2-Page.pdf" target="_blank" rel="noopener noreferrer">European CV</a>
-            <a class="button button-secondary" href="cv/Jewel-Rana-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
-            <a class="button button-secondary" href="https://github.com/jewel-rana" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="button button-secondary" href="mailto:${escapeHtml(data.basics.email)}">Email</a>
-          </div>
+  <div class="page-shell">
+    <aside class="sidebar" data-reveal>
+      <div class="sidebar-card">
+        <div class="sidebar-top">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system" title="Theme: system">
+            <span aria-hidden="true" data-theme-icon>◐</span>
+            <span class="theme-label" data-theme-label>System</span>
+          </button>
         </div>
-        <aside class="panel meta-card" data-reveal>
+
+        <p class="eyebrow">Remote · Backend · Full Stack</p>
+        <h1>${escapeHtml(data.basics.name)}</h1>
+        <p class="role">${escapeHtml(data.basics.label)}</p>
+        <p class="sidebar-email"><a href="mailto:${escapeHtml(data.basics.email)}">${escapeHtml(data.basics.email)}</a></p>
+        <p class="sidebar-location">${escapeHtml(data.basics.location)}</p>
+
+        <div class="social-row">${renderProfileIcons(data.profiles)}</div>
+
+        <div class="sidebar-actions">
+          <a class="button button-primary" href="cv/Jewel-Rana-CV-Europe-2-Page.pdf" target="_blank" rel="noopener noreferrer">European CV</a>
+          <a class="button button-secondary" href="cv/Jewel-Rana-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+        </div>
+
+        <div class="glance">
           <h2>At a glance</h2>
           <ul class="meta-list">
             <li><strong>Experience</strong><span>8+ years</span></li>
-            <li><strong>Focus</strong><span>Laravel / Backend / Full Stack</span></li>
-            <li><strong>Location</strong><span>${escapeHtml(data.basics.location)}</span></li>
+            <li><strong>Focus</strong><span>Laravel · Node.js</span></li>
             <li><strong>Availability</strong><span>Remote</span></li>
             <li><strong>Current</strong><span>Newroz Technologies</span></li>
-            <li><strong>Email</strong><span><a href="mailto:${escapeHtml(data.basics.email)}">${escapeHtml(data.basics.email)}</a></span></li>
+            <li><strong>Phone</strong><span><a href="tel:${escapeHtml(data.basics.phone.replace(/\s+/g, ""))}">${escapeHtml(data.basics.phone)}</a></span></li>
           </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container">
-        <h2>Professional Summary</h2>
-        <div class="panel" data-reveal>
-          ${summary}
-          <h3 style="margin-top:1.4rem">Key strengths</h3>
-          <ul>${highlights}</ul>
-          <div class="actions" style="margin-top:1.4rem">
-            ${renderDownloads(data.downloads)}
-          </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section" id="skills">
-      <div class="container">
+        <nav class="sidebar-nav" aria-label="Sections">
+          <a href="#about">Summary</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#open-source">Open Source</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="content" id="top">
+      <section class="card" id="about" data-reveal>
+        <h2>Professional Summary</h2>
+        ${summary}
+        <h3>Key strengths</h3>
+        <ul class="strengths">${highlights}</ul>
+        <div class="actions">${renderDownloads(data.downloads)}</div>
+      </section>
+
+      <section class="card" id="skills" data-reveal>
         <h2>Capabilities</h2>
-        <p class="section-intro">
-          Deep Laravel/PHP backend ownership with practical Vue.js, JavaScript, and Livewire experience for delivering complete products across the stack.
-        </p>
-        <div class="grid-2">${renderSkills(data.skills)}</div>
-      </div>
-    </section>
+        <p class="section-intro">Deep Laravel/PHP backend ownership with Node.js, Vue.js, and Livewire experience for shipping complete products.</p>
+        <div class="skills-grid">${renderSkills(data.skills)}</div>
+      </section>
 
-    <section class="section" id="experience">
-      <div class="container">
+      <section class="card" id="experience" data-reveal>
         <h2>Experience</h2>
-        <p class="section-intro">
-          Recent work emphasizes wallet systems, card-selling platforms, API integrations, and mentoring backend teams.
-        </p>
-        <div class="timeline">${renderExperience(data.experience)}</div>
-      </div>
-    </section>
+        <p class="section-intro">Wallet systems, card-selling platforms, API integrations, and mentoring backend teams.</p>
+        <div class="entry-list">${renderExperience(data.experience)}</div>
+      </section>
 
-    <section class="section" id="projects">
-      <div class="container">
+      <section class="card" id="projects" data-reveal>
         <h2>Selected Case Studies</h2>
-        <p class="section-intro">
-          Several client systems are private or no longer publicly deployed. These case studies summarize impact without linking to offline demos.
-        </p>
-        <div class="grid-2">${renderProjects(data.projects)}</div>
-      </div>
-    </section>
+        <p class="section-intro">Private or offline client systems are summarized as case studies without dead demo links.</p>
+        <div class="entry-list">${renderProjects(data.projects)}</div>
+      </section>
 
-    <section class="section" id="open-source">
-      <div class="container">
+      <section class="card" id="open-source" data-reveal>
         <h2>Open Source &amp; Public Work</h2>
         <p class="section-intro">
-          Laravel packages, backend integrations, and Node.js real-time chat applications selected from
+          Selected from
           <a href="https://github.com/jewel-rana" target="_blank" rel="noopener noreferrer">github.com/jewel-rana</a>.
         </p>
-        <div class="grid-3">${renderOpenSource(data.openSource)}</div>
-      </div>
-    </section>
+        ${renderOpenSource(data.openSource)}
+      </section>
 
-    <section class="section" id="contact">
-      <div class="container">
+      <section class="card" id="contact" data-reveal>
         <h2>Contact</h2>
-        <div class="panel" data-reveal>
-          <p class="section-intro" style="margin-bottom:1rem">
-            Available for remote senior backend roles. Let’s talk about payment platforms, API-heavy products, and Laravel/Node delivery.
-          </p>
-          <ul class="contact-list">
-            <li>
-              <strong>Email</strong>
-              <a href="mailto:${escapeHtml(data.basics.email)}">${escapeHtml(data.basics.email)}</a>
-            </li>
-            <li>
-              <strong>Phone</strong>
-              <a href="tel:${escapeHtml(data.basics.phone.replace(/\s+/g, ""))}">${escapeHtml(data.basics.phone)}</a>
-            </li>
-            ${renderProfiles(data.profiles)}
-          </ul>
-        </div>
-      </div>
-    </section>
-  </main>
+        <p class="section-intro">Available for remote senior backend roles across payment platforms, API-heavy products, and Laravel/Node delivery.</p>
+        <ul class="contact-grid">
+          <li><strong>Email</strong><a href="mailto:${escapeHtml(data.basics.email)}">${escapeHtml(data.basics.email)}</a></li>
+          <li><strong>Phone</strong><a href="tel:${escapeHtml(data.basics.phone.replace(/\s+/g, ""))}">${escapeHtml(data.basics.phone)}</a></li>
+          <li><strong>GitHub</strong><a href="https://github.com/jewel-rana" target="_blank" rel="noopener noreferrer">jewel-rana</a></li>
+          <li><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/mdjewelrana/" target="_blank" rel="noopener noreferrer">mdjewelrana</a></li>
+        </ul>
+      </section>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>© <span data-year></span> ${escapeHtml(data.basics.name)}. All rights reserved.</div>
-      <div>Last Update ${escapeHtml(data.meta.lastUpdated)}</div>
-    </div>
-  </footer>
+      <footer class="site-footer">
+        <div>© <span data-year></span> ${escapeHtml(data.basics.name)}. All rights reserved.</div>
+        <div>Last Update ${escapeHtml(data.meta.lastUpdated)}</div>
+      </footer>
+    </main>
+  </div>
 
   <script src="assets/js/main.js" defer></script>
 </body>
@@ -311,6 +276,7 @@ async function main() {
   await mkdir(dist, { recursive: true });
   await mkdir(path.join(dist, "assets", "css"), { recursive: true });
   await mkdir(path.join(dist, "assets", "js"), { recursive: true });
+
   const html = renderSite(resume);
   await writeFile(path.join(dist, "index.html"), html, "utf8");
   await writeFile(path.join(root, "index.html"), html, "utf8");
@@ -328,11 +294,9 @@ async function main() {
     path.join(dist, "assets", "css", "cv.css"),
   );
 
-  // Ensure empty .nojekyll for GitHub Pages
   await writeFile(path.join(dist, ".nojekyll"), "", "utf8");
   await writeFile(path.join(root, ".nojekyll"), "", "utf8");
 
-  // Copy CV artifacts into root for convenience if present
   try {
     await cp(path.join(dist, "cv"), path.join(root, "cv"), { recursive: true });
   } catch {
