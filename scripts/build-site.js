@@ -176,6 +176,11 @@ function renderSite(data) {
             <span aria-hidden="true" data-theme-icon>◐</span>
             <span class="theme-label" data-theme-label>System</span>
           </button>
+          <img
+            class="profile-photo"
+            src="assets/images/profile.jpg"
+            alt="Portrait of ${escapeHtml(data.basics.name)}"
+          >
         </div>
 
         <p class="eyebrow">Remote · Backend · Full Stack</p>
@@ -276,6 +281,8 @@ async function main() {
   await mkdir(dist, { recursive: true });
   await mkdir(path.join(dist, "assets", "css"), { recursive: true });
   await mkdir(path.join(dist, "assets", "js"), { recursive: true });
+  await mkdir(path.join(dist, "assets", "images"), { recursive: true });
+  await mkdir(path.join(root, "assets", "images"), { recursive: true });
 
   const html = renderSite(resume);
   await writeFile(path.join(dist, "index.html"), html, "utf8");
@@ -288,6 +295,14 @@ async function main() {
   await cp(
     path.join(root, "assets", "js", "main.js"),
     path.join(dist, "assets", "js", "main.js"),
+  );
+  await cp(
+    path.join(root, "images", "md-jewel-rana.jpg"),
+    path.join(root, "assets", "images", "profile.jpg"),
+  );
+  await cp(
+    path.join(root, "images", "md-jewel-rana.jpg"),
+    path.join(dist, "assets", "images", "profile.jpg"),
   );
   await cp(
     path.join(root, "src", "templates", "cv.css"),

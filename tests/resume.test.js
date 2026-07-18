@@ -134,7 +134,12 @@ test("portfolio supports system, light, and dark themes", () => {
     site,
     /href="cv\/Jewel-Rana-CV-Europe-2-Page\.pdf" target="_blank" rel="noopener noreferrer"/,
   );
-  assert.doesNotMatch(site, /profile\.jpg|profile-photo|hero-grid/);
+  assert.match(site, /assets\/images\/profile\.jpg/);
+  assert.match(site, /class="profile-photo"/);
+  assert.ok(
+    existsSync(path.join(root, "dist", "assets", "images", "profile.jpg")),
+  );
+  assert.doesNotMatch(site, /hero-grid/);
   assert.match(css, /prefers-color-scheme:\s*dark/);
   assert.match(css, /\[data-theme="light"\]/);
   assert.match(css, /\[data-theme="dark"\]/);
