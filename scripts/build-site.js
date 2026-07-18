@@ -169,13 +169,25 @@ function renderSite(data) {
 </head>
 <body>
   <div class="page-shell">
+    <header class="top-bar">
+      <nav class="top-nav" aria-label="Sections">
+        <a href="#about">Summary</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#open-source">Open Source</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system" title="Theme: system">
+        <span aria-hidden="true" data-theme-icon>◐</span>
+        <span class="theme-label" data-theme-label>System</span>
+      </button>
+    </header>
+
+    <div class="layout-body">
     <aside class="sidebar" data-reveal>
       <div class="sidebar-card">
         <div class="sidebar-top">
-          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system" title="Theme: system">
-            <span aria-hidden="true" data-theme-icon>◐</span>
-            <span class="theme-label" data-theme-label>System</span>
-          </button>
           <img
             class="profile-photo"
             src="assets/images/profile.jpg"
@@ -206,15 +218,6 @@ function renderSite(data) {
             <li><strong>Phone</strong><span><a href="tel:${escapeHtml(data.basics.phone.replace(/\s+/g, ""))}">${escapeHtml(data.basics.phone)}</a></span></li>
           </ul>
         </div>
-
-        <nav class="sidebar-nav" aria-label="Sections">
-          <a href="#about">Summary</a>
-          <a href="#skills">Skills</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#open-source">Open Source</a>
-          <a href="#contact">Contact</a>
-        </nav>
       </div>
     </aside>
 
@@ -270,6 +273,7 @@ function renderSite(data) {
         <div>Last Update ${escapeHtml(data.meta.lastUpdated)}</div>
       </footer>
     </main>
+    </div>
   </div>
 
   <script src="assets/js/main.js" defer></script>

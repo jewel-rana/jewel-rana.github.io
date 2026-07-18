@@ -128,7 +128,10 @@ test("portfolio supports system, light, and dark themes", () => {
 
   assert.match(site, /data-theme-toggle/);
   assert.match(site, /class="page-shell"/);
+  assert.match(site, /class="top-bar"/);
+  assert.match(site, /class="top-nav"/);
   assert.match(site, /class="sidebar"/);
+  assert.doesNotMatch(site, /sidebar-nav/);
   assert.match(site, /Jewel-Rana-CV-Europe-2-Page\.pdf/);
   assert.match(
     site,
