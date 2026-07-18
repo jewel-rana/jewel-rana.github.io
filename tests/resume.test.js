@@ -30,6 +30,11 @@ test("resume has required remote-focused fields", () => {
       (project) => /Durpalla/i.test(project.name) && /Ongoing/i.test(project.status),
     ),
   );
+  assert.ok(
+    resume.projects.some(
+      (project) => /iFix/i.test(project.name) && /Node\.js/i.test(project.role),
+    ),
+  );
   assert.ok(resume.profiles.some((profile) => profile.network === "GitHub"));
 });
 
@@ -118,10 +123,24 @@ test("portfolio supports system, light, and dark themes", () => {
   );
 
   assert.match(site, /data-theme-toggle/);
+  assert.match(site, /assets\/images\/profile\.jpg/);
+  assert.ok(
+    existsSync(path.join(root, "dist", "assets", "images", "profile.jpg")),
+  );
   assert.match(css, /prefers-color-scheme:\s*dark/);
   assert.match(css, /\[data-theme="light"\]/);
   assert.match(css, /\[data-theme="dark"\]/);
   assert.match(js, /\["system", "light", "dark"\]/);
+});
+
+test("tooling includes macOS and GitHub Actions CI/CD", () => {
+  const tooling = resume.skills.find(
+    (group) => group.category === "DevOps & Tooling",
+  );
+
+  assert.ok(tooling);
+  assert.ok(tooling.items.includes("macOS"));
+  assert.ok(tooling.items.includes("GitHub Actions CI/CD"));
 });
 
 test("fintech case studies demonstrate production-pressure handling", () => {

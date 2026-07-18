@@ -28,7 +28,7 @@ Strong ownership across requirements, estimation, architecture, mentoring, and d
 - **Frontend (supporting):** JavaScript, Vue.js, jQuery, Livewire, HTML5, CSS3, Bootstrap
 - **Data & Caching:** MySQL, MariaDB, PostgreSQL, MongoDB, Redis, Memcached, Firebase
 - **Integrations & Domains:** Payment gateways, Wallet systems, Inventory & distribution, CRM workflows, MikroTik / ISP billing, SMS & push notifications, Third-party API design
-- **DevOps & Tooling:** Docker / docker-compose, Nginx, Apache, Linux (Ubuntu, CentOS), Jenkins, Git, AI-assisted development
+- **DevOps & Tooling:** Docker / docker-compose, Nginx, Apache, Linux (Ubuntu, CentOS), macOS, Jenkins, GitHub Actions CI/CD, Git, AI-assisted development
 
 ## Professional Experience
 
@@ -116,6 +116,17 @@ End-to-end card-selling application covering inventory management, payment gatew
 - Handled time-sensitive production issues and peak operational pressure while preserving card-sale, stock, and transaction consistency
 
 **Technologies:** Laravel, MySQL, REST APIs, Inventory systems
+
+### iFix Service Management Platform
+**Node.js Backend Developer** · Private case study
+
+Node.js-based device repair and service-management platform supporting the operational workflows required to receive, track, and manage customer repair services.
+
+- Developed backend functionality for repair-service operations
+- Translated service-management requirements into maintainable application workflows
+- Supported reliable day-to-day processing across the repair lifecycle
+
+**Technologies:** Node.js, JavaScript, Backend services
 
 ### FastPay Wallet (Iraq)
 **Backend Developer** · Case study

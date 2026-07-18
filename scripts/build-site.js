@@ -187,14 +187,25 @@ function renderSite(data) {
     <section class="hero">
       <div class="container hero-grid">
         <div class="panel" data-reveal>
-          <p class="eyebrow">Remote-ready Laravel engineer</p>
-          <h1>${escapeHtml(data.basics.name)}</h1>
-          <p class="role">${escapeHtml(data.basics.label)}</p>
-          <p class="lede">${escapeHtml(data.basics.summary[0])}</p>
-          <div class="actions">
-            <a class="button button-primary" href="cv/Jewel-Rana-CV.pdf">Download PDF CV</a>
-            <a class="button button-secondary" href="https://github.com/jewel-rana" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="button button-secondary" href="mailto:${escapeHtml(data.basics.email)}">Email Me</a>
+          <div class="hero-intro">
+            <div>
+              <p class="eyebrow">Remote-ready Laravel engineer</p>
+              <h1>${escapeHtml(data.basics.name)}</h1>
+              <p class="role">${escapeHtml(data.basics.label)}</p>
+              <p class="lede">${escapeHtml(data.basics.summary[0])}</p>
+              <div class="actions">
+                <a class="button button-primary" href="cv/Jewel-Rana-CV.pdf">Download PDF CV</a>
+                <a class="button button-secondary" href="https://github.com/jewel-rana" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a class="button button-secondary" href="mailto:${escapeHtml(data.basics.email)}">Email Me</a>
+              </div>
+            </div>
+            <img
+              class="profile-photo"
+              src="assets/images/profile.jpg"
+              width="176"
+              height="176"
+              alt="Portrait of ${escapeHtml(data.basics.name)}"
+            >
           </div>
         </div>
         <aside class="panel meta-card" data-reveal>
@@ -305,6 +316,8 @@ async function main() {
   await mkdir(dist, { recursive: true });
   await mkdir(path.join(dist, "assets", "css"), { recursive: true });
   await mkdir(path.join(dist, "assets", "js"), { recursive: true });
+  await mkdir(path.join(dist, "assets", "images"), { recursive: true });
+  await mkdir(path.join(root, "assets", "images"), { recursive: true });
 
   const html = renderSite(resume);
   await writeFile(path.join(dist, "index.html"), html, "utf8");
@@ -317,6 +330,14 @@ async function main() {
   await cp(
     path.join(root, "assets", "js", "main.js"),
     path.join(dist, "assets", "js", "main.js"),
+  );
+  await cp(
+    path.join(root, "images", "md-jewel-rana.jpg"),
+    path.join(root, "assets", "images", "profile.jpg"),
+  );
+  await cp(
+    path.join(root, "images", "md-jewel-rana.jpg"),
+    path.join(dist, "assets", "images", "profile.jpg"),
   );
   await cp(
     path.join(root, "src", "templates", "cv.css"),
