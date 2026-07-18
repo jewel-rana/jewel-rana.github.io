@@ -25,6 +25,11 @@ test("resume has required remote-focused fields", () => {
   assert.ok(resume.experience.some((job) => job.company.includes("Newroz")));
   assert.ok(resume.projects.some((project) => /Kartat/i.test(project.name)));
   assert.ok(resume.projects.some((project) => /FastPay/i.test(project.name)));
+  assert.ok(
+    resume.projects.some(
+      (project) => /Durpalla/i.test(project.name) && /Ongoing/i.test(project.status),
+    ),
+  );
   assert.ok(resume.profiles.some((profile) => profile.network === "GitHub"));
 });
 
@@ -84,4 +89,48 @@ test("experience timeline keeps Newroz as present role", () => {
   assert.equal(current.company, "Newroz Technologies Limited");
   assert.equal(current.endDate, "Present");
   assert.match(current.highlights.join(" "), /Kartat|FastPay/i);
+});
+
+test("open source work includes Node.js real-time chat projects", () => {
+  const chatProjects = resume.openSource.filter(
+    (project) =>
+      project.language === "Node.js" &&
+      /chat|support/i.test(`${project.name} ${project.description}`),
+  );
+
+  assert.ok(chatProjects.length >= 2);
+  assert.ok(
+    chatProjects.some((project) =>
+      project.url.includes("nodejs-chat-with-socket.io"),
+    ),
+  );
+});
+
+test("portfolio supports system, light, and dark themes", () => {
+  const site = readFileSync(path.join(root, "dist", "index.html"), "utf8");
+  const css = readFileSync(
+    path.join(root, "dist", "assets", "css", "styles.css"),
+    "utf8",
+  );
+  const js = readFileSync(
+    path.join(root, "dist", "assets", "js", "main.js"),
+    "utf8",
+  );
+
+  assert.match(site, /data-theme-toggle/);
+  assert.match(css, /prefers-color-scheme:\s*dark/);
+  assert.match(css, /\[data-theme="light"\]/);
+  assert.match(css, /\[data-theme="dark"\]/);
+  assert.match(js, /\["system", "light", "dark"\]/);
+});
+
+test("fintech case studies demonstrate production-pressure handling", () => {
+  const productionProjects = resume.projects.filter((project) =>
+    /Kartat|FastPay/i.test(project.name),
+  );
+
+  assert.equal(productionProjects.length, 2);
+  for (const project of productionProjects) {
+    assert.match(project.highlights.join(" "), /production|pressure|incident/i);
+  }
 });

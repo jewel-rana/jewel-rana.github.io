@@ -1,6 +1,6 @@
 # Md Jewel Rana
 
-**Senior Backend Developer**
+**Senior Laravel Backend & Full-Stack Developer**
 
 Dhaka, Bangladesh · jewelrana.dev@gmail.com · +880 1776-273545 · https://jewel-rana.github.io · Open to remote opportunities worldwide
 
@@ -8,7 +8,7 @@ Dhaka, Bangladesh · jewelrana.dev@gmail.com · +880 1776-273545 · https://jewe
 
 ## Professional Summary
 
-Backend-focused software engineer with 10+ years of professional experience designing and delivering scalable web platforms, payment systems, inventory workflows, and third-party API integrations.
+Laravel-focused backend and full-stack software engineer with 10+ years of professional experience designing and delivering scalable web platforms, payment systems, inventory workflows, real-time applications, and third-party API integrations.
 
 At Newroz Technologies Limited, contributed to FastPay wallet products for Iraq and independently built the full Kartat card-selling application covering inventory, gateway, reseller, and bank partnership flows.
 
@@ -39,6 +39,7 @@ Building innovative digital products for customers and businesses, with a focus 
 
 - Owned backend delivery for Kartat card-selling products, including inventory, gateway, reseller panels, FIB Bank of Iraq reseller flows, and activity-log management.
 - Contributed to FastPay wallet initiatives for Iraq across inventory, corporate, distribution, CRM, and operational logging modules.
+- Handled production-critical incidents and high-pressure releases across payment, card-selling, stock, and partner-integration workflows while protecting transaction and inventory integrity.
 - Designed and integrated third-party APIs for payments, stock, and partner systems using Laravel.
 - Led junior developers, supported project estimation and scheduling, and improved readability and scalability of production codebases.
 
@@ -90,6 +91,20 @@ Web application development and technical delivery support in an agile team envi
 
 ## Selected Projects & Case Studies
 
+### Durpalla Booking Platform Ecosystem
+**Full-Stack Laravel Developer** · Ongoing case study
+
+Building an end-to-end booking platform ecosystem that connects a Laravel/PHP API gateway with a Flutter customer application and the services required for complete booking journeys.
+
+- Developing the platform across backend services, API integration, and customer-facing booking experiences
+- Designing a maintainable API ecosystem to support complete booking workflows
+- Coordinating application and backend delivery as an actively evolving production product
+
+**Technologies:** Laravel, PHP, REST APIs, Flutter, Dart, MySQL
+
+- [Flutter booking application](https://github.com/Durpalla/durpalla-flutter-app)
+- [API gateway](https://github.com/Durpalla/apigw-supervisor-durpalla)
+
 ### Kartat Card-Selling Platform
 **Lead Backend Developer** · Case study
 
@@ -98,6 +113,7 @@ End-to-end card-selling application covering inventory management, payment gatew
 - Built the full application architecture and core business modules
 - Integrated third-party APIs for partner and gateway operations
 - Designed reseller and distribution workflows for operational scale
+- Handled time-sensitive production issues and peak operational pressure while preserving card-sale, stock, and transaction consistency
 
 **Technologies:** Laravel, MySQL, REST APIs, Inventory systems
 
@@ -109,6 +125,7 @@ Wallet and operational panels for FastPay initiatives serving Iraq, including in
 - Delivered multiple interconnected Laravel modules for wallet operations
 - Implemented stock and partner integration workflows
 - Supported high-trust financial domain requirements around auditability
+- Troubleshot urgent production incidents and stabilized payment, inventory, and partner workflows under release and operational pressure
 
 **Technologies:** Laravel, MySQL, API integrations, CRM
 
@@ -163,6 +180,9 @@ Library management system for BIISS, later revisited in a revamp effort.
 - **[standard-password-policy](https://github.com/jewel-rana/standard-password-policy)** (PHP) — Reusable password-policy package for Laravel applications.
 - **[sms-gateway](https://github.com/jewel-rana/sms-gateway)** (PHP) — SMS gateway integration package for PHP projects.
 - **[apigw.ecom](https://github.com/jewel-rana/apigw.ecom)** (JavaScript) — API gateway oriented work for ecommerce services.
+- **[nodejs-chat-with-socket.io](https://github.com/jewel-rana/nodejs-chat-with-socket.io)** (Node.js) — Real-time chat application built with Node.js, Express, and Socket.IO.
+- **[livesupport](https://github.com/jewel-rana/livesupport)** (Node.js) — Reusable live-support chat package powered by Node.js, Express, and Socket.IO.
+- **[chatbot-server](https://github.com/jewel-rana/chatbot-server)** (Node.js) — Server-side foundation for a real-time chatbot application.
 
 ## Education
 

@@ -147,6 +147,18 @@ function renderSite(data) {
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${escapeHtml(data.meta.title)}">
   <meta name="twitter:description" content="${escapeHtml(data.meta.description)}">
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem("theme");
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch {
+        // Use the system color scheme when storage is unavailable.
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -164,6 +176,10 @@ function renderSite(data) {
           <li><a href="cv/Jewel-Rana-CV.pdf">CV PDF</a></li>
         </ul>
       </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system" title="Theme: system">
+        <span aria-hidden="true" data-theme-icon>◐</span>
+        <span class="theme-label" data-theme-label>System</span>
+      </button>
     </div>
   </header>
 
@@ -171,7 +187,7 @@ function renderSite(data) {
     <section class="hero">
       <div class="container hero-grid">
         <div class="panel" data-reveal>
-          <p class="eyebrow">Remote-ready backend engineer</p>
+          <p class="eyebrow">Remote-ready Laravel engineer</p>
           <h1>${escapeHtml(data.basics.name)}</h1>
           <p class="role">${escapeHtml(data.basics.label)}</p>
           <p class="lede">${escapeHtml(data.basics.summary[0])}</p>
@@ -185,7 +201,7 @@ function renderSite(data) {
           <h2>At a glance</h2>
           <ul class="meta-list">
             <li><strong>Experience</strong><span>10+ years</span></li>
-            <li><strong>Focus</strong><span>Backend / APIs / Fintech</span></li>
+            <li><strong>Focus</strong><span>Laravel / Backend / Full Stack</span></li>
             <li><strong>Location</strong><span>${escapeHtml(data.basics.location)}</span></li>
             <li><strong>Availability</strong><span>Remote</span></li>
             <li><strong>Current</strong><span>Newroz Technologies</span></li>
@@ -213,7 +229,7 @@ function renderSite(data) {
       <div class="container">
         <h2>Capabilities</h2>
         <p class="section-intro">
-          Deep backend ownership across Laravel/PHP platforms, with supporting frontend fluency and strong delivery habits for remote product teams.
+          Deep Laravel/PHP backend ownership with practical Vue.js, JavaScript, and Livewire experience for delivering complete products across the stack.
         </p>
         <div class="grid-2">${renderSkills(data.skills)}</div>
       </div>
@@ -243,7 +259,7 @@ function renderSite(data) {
       <div class="container">
         <h2>Open Source &amp; Public Work</h2>
         <p class="section-intro">
-          A curated selection from
+          Laravel packages, backend integrations, and Node.js real-time chat applications selected from
           <a href="https://github.com/jewel-rana" target="_blank" rel="noopener noreferrer">github.com/jewel-rana</a>.
         </p>
         <div class="grid-3">${renderOpenSource(data.openSource)}</div>

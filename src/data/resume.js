@@ -3,18 +3,18 @@
  */
 export const resume = {
   meta: {
-    title: "Md Jewel Rana — Senior Backend Developer",
+    title: "Md Jewel Rana — Senior Laravel Backend & Full-Stack Developer",
     description:
-      "Senior Backend Developer with 10+ years of experience building payment, wallet, inventory, and API-driven platforms. Available for remote roles.",
+      "Senior Laravel backend and full-stack developer with 10+ years of experience building payment, wallet, inventory, and API-driven platforms. Available for remote roles.",
     keywords:
-      "Senior Backend Developer, Laravel, PHP, Node.js, remote, FastPay, Kartat, API integration",
+      "Senior Laravel Developer, Backend Developer, Full-Stack Developer, PHP, Node.js, remote, FastPay, Kartat, API integration",
     siteUrl: "https://jewel-rana.github.io",
     lastUpdated: "2026-07-18",
   },
 
   basics: {
     name: "Md Jewel Rana",
-    label: "Senior Backend Developer",
+    label: "Senior Laravel Backend & Full-Stack Developer",
     email: "jewelrana.dev@gmail.com",
     phone: "+880 1776-273545",
     phoneAlt: "+880 1911-785317",
@@ -22,7 +22,7 @@ export const resume = {
     availability: "Open to remote opportunities worldwide",
     website: "https://jewel-rana.github.io",
     summary: [
-      "Backend-focused software engineer with 10+ years of professional experience designing and delivering scalable web platforms, payment systems, inventory workflows, and third-party API integrations.",
+      "Laravel-focused backend and full-stack software engineer with 10+ years of professional experience designing and delivering scalable web platforms, payment systems, inventory workflows, real-time applications, and third-party API integrations.",
       "At Newroz Technologies Limited, contributed to FastPay wallet products for Iraq and independently built the full Kartat card-selling application covering inventory, gateway, reseller, and bank partnership flows.",
       "Strong ownership across requirements, estimation, architecture, mentoring, and delivery. Comfortable leading backend workstreams and accelerating delivery with modern AI-assisted engineering practices while maintaining code quality, security, and maintainability.",
     ],
@@ -135,6 +135,7 @@ export const resume = {
       highlights: [
         "Owned backend delivery for Kartat card-selling products, including inventory, gateway, reseller panels, FIB Bank of Iraq reseller flows, and activity-log management.",
         "Contributed to FastPay wallet initiatives for Iraq across inventory, corporate, distribution, CRM, and operational logging modules.",
+        "Handled production-critical incidents and high-pressure releases across payment, card-selling, stock, and partner-integration workflows while protecting transaction and inventory integrity.",
         "Designed and integrated third-party APIs for payments, stock, and partner systems using Laravel.",
         "Led junior developers, supported project estimation and scheduling, and improved readability and scalability of production codebases.",
       ],
@@ -221,6 +222,36 @@ export const resume = {
 
   projects: [
     {
+      name: "Durpalla Booking Platform Ecosystem",
+      role: "Full-Stack Laravel Developer",
+      status: "Ongoing case study",
+      description:
+        "Building an end-to-end booking platform ecosystem that connects a Laravel/PHP API gateway with a Flutter customer application and the services required for complete booking journeys.",
+      technologies: [
+        "Laravel",
+        "PHP",
+        "REST APIs",
+        "Flutter",
+        "Dart",
+        "MySQL",
+      ],
+      highlights: [
+        "Developing the platform across backend services, API integration, and customer-facing booking experiences",
+        "Designing a maintainable API ecosystem to support complete booking workflows",
+        "Coordinating application and backend delivery as an actively evolving production product",
+      ],
+      links: [
+        {
+          label: "Flutter booking application",
+          url: "https://github.com/Durpalla/durpalla-flutter-app",
+        },
+        {
+          label: "API gateway",
+          url: "https://github.com/Durpalla/apigw-supervisor-durpalla",
+        },
+      ],
+    },
+    {
       name: "Kartat Card-Selling Platform",
       role: "Lead Backend Developer",
       status: "Case study",
@@ -231,6 +262,7 @@ export const resume = {
         "Built the full application architecture and core business modules",
         "Integrated third-party APIs for partner and gateway operations",
         "Designed reseller and distribution workflows for operational scale",
+        "Handled time-sensitive production issues and peak operational pressure while preserving card-sale, stock, and transaction consistency",
       ],
       links: [],
     },
@@ -245,6 +277,7 @@ export const resume = {
         "Delivered multiple interconnected Laravel modules for wallet operations",
         "Implemented stock and partner integration workflows",
         "Supported high-trust financial domain requirements around auditability",
+        "Troubleshot urgent production incidents and stabilized payment, inventory, and partner workflows under release and operational pressure",
       ],
       links: [],
     },
@@ -343,6 +376,27 @@ export const resume = {
       description: "API gateway oriented work for ecommerce services.",
       url: "https://github.com/jewel-rana/apigw.ecom",
       language: "JavaScript",
+    },
+    {
+      name: "nodejs-chat-with-socket.io",
+      description:
+        "Real-time chat application built with Node.js, Express, and Socket.IO.",
+      url: "https://github.com/jewel-rana/nodejs-chat-with-socket.io",
+      language: "Node.js",
+    },
+    {
+      name: "livesupport",
+      description:
+        "Reusable live-support chat package powered by Node.js, Express, and Socket.IO.",
+      url: "https://github.com/jewel-rana/livesupport",
+      language: "Node.js",
+    },
+    {
+      name: "chatbot-server",
+      description:
+        "Server-side foundation for a real-time chatbot application.",
+      url: "https://github.com/jewel-rana/chatbot-server",
+      language: "Node.js",
     },
   ],
 
