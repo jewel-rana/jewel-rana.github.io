@@ -128,6 +128,10 @@ test("portfolio supports system, light, and dark themes", () => {
 
   assert.match(site, /data-theme-toggle/);
   assert.match(site, /Jewel-Rana-CV-Europe-2-Page\.pdf/);
+  assert.match(
+    site,
+    /href="cv\/Jewel-Rana-CV-Europe-2-Page\.pdf" target="_blank" rel="noopener noreferrer"/,
+  );
   assert.doesNotMatch(site, /profile\.jpg|profile-photo/);
   assert.match(css, /prefers-color-scheme:\s*dark/);
   assert.match(css, /\[data-theme="light"\]/);

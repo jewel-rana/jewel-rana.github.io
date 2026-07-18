@@ -237,7 +237,18 @@ img {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 2.5rem;
-  align-items: start;
+  align-items: stretch;
+}
+
+.hero-grid > .panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+}
+
+.hero-grid > .meta-card .meta-list {
+  margin-top: auto;
 }
 
 .panel {
