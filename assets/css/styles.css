@@ -133,7 +133,11 @@ ul {
 }
 
 .sidebar-card {
-  padding: 1.35rem 1.25rem 1.5rem;
+  padding: 1.35rem 0.35rem 1.5rem 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .sidebar-top {
