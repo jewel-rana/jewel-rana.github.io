@@ -298,7 +298,7 @@ function renderSite(data) {
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>© <span data-year></span> ${escapeHtml(data.basics.name)}. All rights reserved.</div>
-      <div>Updated ${escapeHtml(data.meta.lastUpdated)} · Built from a single résumé data source.</div>
+      <div>Last Update ${escapeHtml(data.meta.lastUpdated)}</div>
     </div>
   </footer>
 
