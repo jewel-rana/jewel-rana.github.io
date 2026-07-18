@@ -240,24 +240,6 @@ img {
   align-items: start;
 }
 
-.hero-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 176px;
-  gap: 1.75rem;
-  align-items: start;
-}
-
-.profile-photo {
-  width: 176px;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border: 3px solid var(--panel);
-  border-radius: 16px;
-  box-shadow:
-    0 0 0 1px var(--line),
-    var(--shadow);
-}
-
 .panel {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -600,16 +582,6 @@ img {
 }
 
 @media (max-width: 560px) {
-  .hero-intro {
-    grid-template-columns: 1fr;
-  }
-
-  .profile-photo {
-    grid-row: 1;
-    width: 128px;
-    border-radius: 50%;
-  }
-
   .theme-label {
     display: none;
   }

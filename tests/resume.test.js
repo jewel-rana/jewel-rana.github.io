@@ -123,10 +123,7 @@ test("portfolio supports system, light, and dark themes", () => {
   );
 
   assert.match(site, /data-theme-toggle/);
-  assert.match(site, /assets\/images\/profile\.jpg/);
-  assert.ok(
-    existsSync(path.join(root, "dist", "assets", "images", "profile.jpg")),
-  );
+  assert.doesNotMatch(site, /profile\.jpg|profile-photo/);
   assert.match(css, /prefers-color-scheme:\s*dark/);
   assert.match(css, /\[data-theme="light"\]/);
   assert.match(css, /\[data-theme="dark"\]/);
