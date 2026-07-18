@@ -92,17 +92,23 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     document.querySelectorAll("[data-reveal]").forEach((el) => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(12px)";
-      el.style.transition = "opacity 0.45s ease, transform 0.45s ease";
+      el.classList.add("reveal-pending");
       observer.observe(el);
     });
 
     const style = document.createElement("style");
     style.textContent = `
+      [data-reveal].reveal-pending {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.45s ease, transform 0.45s ease;
+      }
       [data-reveal].is-visible {
         opacity: 1 !important;
         transform: none !important;
+      }
+      .hero-grid > [data-reveal].reveal-pending {
+        transform: none;
       }
     `;
     document.head.appendChild(style);

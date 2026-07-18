@@ -5,7 +5,7 @@ export const resume = {
   meta: {
     title: "Md Jewel Rana — Senior Laravel Backend & Full-Stack Developer",
     description:
-      "Senior Laravel backend and full-stack developer with 10+ years of experience building payment, wallet, inventory, and API-driven platforms. Available for remote roles.",
+      "Senior Laravel backend and full-stack developer with 8+ years of experience building payment, wallet, inventory, and API-driven platforms. Available for remote roles.",
     keywords:
       "Senior Laravel Developer, Backend Developer, Full-Stack Developer, PHP, Node.js, remote, FastPay, Kartat, API integration",
     siteUrl: "https://jewel-rana.github.io",
@@ -22,7 +22,7 @@ export const resume = {
     availability: "Open to remote opportunities worldwide",
     website: "https://jewel-rana.github.io",
     summary: [
-      "Laravel-focused backend and full-stack software engineer with 10+ years of professional experience designing and delivering scalable web platforms, payment systems, inventory workflows, real-time applications, and third-party API integrations.",
+      "Backend-focused Laravel and Node.js full-stack software engineer with 8+ years of professional experience designing and delivering scalable web platforms, payment systems, inventory workflows, real-time applications, and third-party API integrations.",
       "At Newroz Technologies Limited, contributed to FastPay wallet products for Iraq and independently built the full Kartat card-selling application covering inventory, gateway, reseller, and bank partnership flows.",
       "Strong ownership across requirements, estimation, architecture, mentoring, and delivery. Comfortable leading backend workstreams and accelerating delivery with modern AI-assisted engineering practices while maintaining code quality, security, and maintainability.",
     ],
@@ -118,7 +118,7 @@ export const resume = {
   ],
 
   highlights: [
-    "10+ years shipping production backend systems across fintech, booking, ISP, and enterprise domains",
+    "8+ years shipping production backend systems across fintech, booking, ISP, and enterprise domains",
     "Built the complete Kartat card-selling platform end-to-end (inventory, gateway, reseller, bank flows)",
     "Delivered FastPay wallet product modules for Iraq including inventory, corporate, distribution, CRM, and activity logging",
     "Experienced mentoring developers, estimating delivery, and owning features from requirements to production",
@@ -457,24 +457,14 @@ export const resume = {
 
   downloads: [
     {
-      label: "European CV PDF",
+      label: "European CV",
       href: "cv/Jewel-Rana-CV-Europe-2-Page.pdf",
       type: "pdf",
     },
     {
-      label: "European CV DOCX",
-      href: "cv/Jewel-Rana-CV-Europe-2-Page.docx",
-      type: "docx",
-    },
-    {
-      label: "Full CV PDF",
+      label: "Download CV",
       href: "cv/Jewel-Rana-CV.pdf",
       type: "pdf",
-    },
-    {
-      label: "Full CV DOCX",
-      href: "cv/Jewel-Rana-CV.docx",
-      type: "docx",
     },
     {
       label: "Markdown",

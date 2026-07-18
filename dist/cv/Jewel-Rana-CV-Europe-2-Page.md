@@ -8,7 +8,7 @@ Dhaka, Bangladesh · Remote worldwide · jewelrana.dev@gmail.com · +880 1776-27
 
 ## Professional Profile
 
-Laravel-focused backend and full-stack software engineer with 10+ years of professional experience designing and delivering scalable web platforms, payment systems, inventory workflows, real-time applications, and third-party API integrations.
+Backend-focused Laravel and Node.js full-stack software engineer with 8+ years of professional experience designing and delivering scalable web platforms, payment systems, inventory workflows, real-time applications, and third-party API integrations.
 
 Experienced in distributed remote collaboration, technical ownership, mentoring, production incident handling, and delivery from requirements through deployment.
 

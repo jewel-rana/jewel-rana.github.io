@@ -21,7 +21,7 @@ const DEAD_LINK_PATTERNS = [
 test("resume has required remote-focused fields", () => {
   assert.equal(resume.basics.name, "Md Jewel Rana");
   assert.match(resume.basics.label, /Backend/i);
-  assert.ok(resume.basics.summary.join(" ").includes("10+"));
+  assert.ok(resume.basics.summary.join(" ").includes("8+"));
   assert.ok(resume.experience.some((job) => job.company.includes("Newroz")));
   assert.ok(resume.projects.some((project) => /Kartat/i.test(project.name)));
   assert.ok(resume.projects.some((project) => /FastPay/i.test(project.name)));

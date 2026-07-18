@@ -8,7 +8,7 @@ Dhaka, Bangladesh · jewelrana.dev@gmail.com · +880 1776-273545 · https://jewe
 
 ## Professional Summary
 
-Laravel-focused backend and full-stack software engineer with 10+ years of professional experience designing and delivering scalable web platforms, payment systems, inventory workflows, real-time applications, and third-party API integrations.
+Backend-focused Laravel and Node.js full-stack software engineer with 8+ years of professional experience designing and delivering scalable web platforms, payment systems, inventory workflows, real-time applications, and third-party API integrations.
 
 At Newroz Technologies Limited, contributed to FastPay wallet products for Iraq and independently built the full Kartat card-selling application covering inventory, gateway, reseller, and bank partnership flows.
 
@@ -16,7 +16,7 @@ Strong ownership across requirements, estimation, architecture, mentoring, and d
 
 ## Key Strengths
 
-- 10+ years shipping production backend systems across fintech, booking, ISP, and enterprise domains
+- 8+ years shipping production backend systems across fintech, booking, ISP, and enterprise domains
 - Built the complete Kartat card-selling platform end-to-end (inventory, gateway, reseller, bank flows)
 - Delivered FastPay wallet product modules for Iraq including inventory, corporate, distribution, CRM, and activity logging
 - Experienced mentoring developers, estimating delivery, and owning features from requirements to production

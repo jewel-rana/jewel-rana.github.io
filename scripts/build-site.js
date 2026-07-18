@@ -178,7 +178,7 @@ function renderSite(data) {
           <li><a href="#open-source">Open Source</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="cv/Jewel-Rana-CV-Europe-2-Page.pdf" target="_blank" rel="noopener noreferrer">EU CV</a></li>
-          <li><a href="cv/Jewel-Rana-CV.pdf" target="_blank" rel="noopener noreferrer">Full CV</a></li>
+          <li><a href="cv/Jewel-Rana-CV.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
         </ul>
       </nav>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system" title="Theme: system">
@@ -197,8 +197,8 @@ function renderSite(data) {
           <p class="role">${escapeHtml(data.basics.label)}</p>
           <p class="lede">${escapeHtml(data.basics.summary[0])}</p>
           <div class="actions">
-            <a class="button button-primary" href="cv/Jewel-Rana-CV-Europe-2-Page.pdf" target="_blank" rel="noopener noreferrer">European CV (2-page)</a>
-            <a class="button button-secondary" href="cv/Jewel-Rana-CV.pdf" target="_blank" rel="noopener noreferrer">Full CV PDF</a>
+            <a class="button button-primary" href="cv/Jewel-Rana-CV-Europe-2-Page.pdf" target="_blank" rel="noopener noreferrer">European CV</a>
+            <a class="button button-secondary" href="cv/Jewel-Rana-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
             <a class="button button-secondary" href="https://github.com/jewel-rana" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a class="button button-secondary" href="mailto:${escapeHtml(data.basics.email)}">Email</a>
           </div>
@@ -206,7 +206,7 @@ function renderSite(data) {
         <aside class="panel meta-card" data-reveal>
           <h2>At a glance</h2>
           <ul class="meta-list">
-            <li><strong>Experience</strong><span>10+ years</span></li>
+            <li><strong>Experience</strong><span>8+ years</span></li>
             <li><strong>Focus</strong><span>Laravel / Backend / Full Stack</span></li>
             <li><strong>Location</strong><span>${escapeHtml(data.basics.location)}</span></li>
             <li><strong>Availability</strong><span>Remote</span></li>
