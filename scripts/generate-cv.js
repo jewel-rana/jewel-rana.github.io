@@ -1,6 +1,8 @@
+import { existsSync } from "node:fs";
 import { mkdir, writeFile, copyFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { execFileSync } from "node:child_process";
 import puppeteer from "puppeteer";
 import { resume } from "../src/data/resume.js";
 import { renderMarkdown } from "../src/renderers/markdown.js";
@@ -29,10 +31,44 @@ const files = {
   css: path.join(assetsCssDir, "cv.css"),
 };
 
+function resolveChromePath() {
+  if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+    return process.env.PUPPETEER_EXECUTABLE_PATH;
+  }
+
+  const candidates = [
+    "/usr/bin/google-chrome-stable",
+    "/usr/bin/google-chrome",
+    "/usr/bin/chromium-browser",
+    "/usr/bin/chromium",
+    "/snap/bin/chromium",
+  ];
+
+  for (const candidate of candidates) {
+    if (existsSync(candidate)) return candidate;
+  }
+
+  for (const binary of [
+    "google-chrome-stable",
+    "google-chrome",
+    "chromium-browser",
+    "chromium",
+  ]) {
+    try {
+      return execFileSync("which", [binary], { encoding: "utf8" }).trim();
+    } catch {
+      // Keep looking.
+    }
+  }
+
+  return undefined;
+}
+
 async function generatePdf(htmlPath, pdfPath, options = {}) {
+  const executablePath = resolveChromePath();
   const browser = await puppeteer.launch({
     headless: true,
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+    executablePath,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
 
