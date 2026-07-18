@@ -204,8 +204,8 @@ function renderSite(data) {
         <div class="social-row">${renderProfileIcons(data.profiles)}</div>
 
         <div class="sidebar-actions">
-          <a class="button button-primary" href="cv/Jewel-Rana-CV-Europe-2-Page.pdf" target="_blank" rel="noopener noreferrer">European CV</a>
-          <a class="button button-secondary" href="cv/Jewel-Rana-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+          <a class="button button-primary" href="cv/Jewel-Rana-CV-Europe-2-Page.pdf" target="_blank" rel="noopener noreferrer">Short CV</a>
+          <a class="button button-secondary" href="cv/Jewel-Rana-CV.pdf" target="_blank" rel="noopener noreferrer">Download Full CV</a>
         </div>
 
         <div class="glance">
