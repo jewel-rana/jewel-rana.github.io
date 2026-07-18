@@ -177,7 +177,8 @@ function renderSite(data) {
           <li><a href="#projects">Projects</a></li>
           <li><a href="#open-source">Open Source</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="cv/Jewel-Rana-CV.pdf">CV PDF</a></li>
+          <li><a href="cv/Jewel-Rana-CV-Europe-2-Page.pdf">EU CV</a></li>
+          <li><a href="cv/Jewel-Rana-CV.pdf">Full CV</a></li>
         </ul>
       </nav>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system" title="Theme: system">
@@ -196,9 +197,10 @@ function renderSite(data) {
           <p class="role">${escapeHtml(data.basics.label)}</p>
           <p class="lede">${escapeHtml(data.basics.summary[0])}</p>
           <div class="actions">
-            <a class="button button-primary" href="cv/Jewel-Rana-CV.pdf">Download PDF CV</a>
+            <a class="button button-primary" href="cv/Jewel-Rana-CV-Europe-2-Page.pdf">European CV (2-page)</a>
+            <a class="button button-secondary" href="cv/Jewel-Rana-CV.pdf">Full CV PDF</a>
             <a class="button button-secondary" href="https://github.com/jewel-rana" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="button button-secondary" href="mailto:${escapeHtml(data.basics.email)}">Email Me</a>
+            <a class="button button-secondary" href="mailto:${escapeHtml(data.basics.email)}">Email</a>
           </div>
         </div>
         <aside class="panel meta-card" data-reveal>

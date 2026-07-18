@@ -127,6 +127,7 @@ test("portfolio supports system, light, and dark themes", () => {
   );
 
   assert.match(site, /data-theme-toggle/);
+  assert.match(site, /Jewel-Rana-CV-Europe-2-Page\.pdf/);
   assert.doesNotMatch(site, /profile\.jpg|profile-photo/);
   assert.match(css, /prefers-color-scheme:\s*dark/);
   assert.match(css, /\[data-theme="light"\]/);
